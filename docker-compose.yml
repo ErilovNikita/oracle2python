@@ -1,0 +1,14 @@
+# docker-compose.yml
+
+version: '3.8'
+services:
+  api:
+    build: .
+    container_name: oracle2python
+    command: bash -c 'uvicorn app.main:app --host 0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    environment:
+      - ORACLE_DATABASE_URL=oracle://USER:PASS@HOST:PORT/TABLE
